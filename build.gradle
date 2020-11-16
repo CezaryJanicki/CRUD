@@ -4,6 +4,7 @@ plugins {
 	id 'java'
 	id 'eclipse'
 	//id 'war'
+	//
 }
 
 group = 'com.crud'
