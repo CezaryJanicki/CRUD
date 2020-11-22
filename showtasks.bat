@@ -5,9 +5,7 @@ echo GRADLEW BUILD has errors - breaking work
 goto fail
 
 :chrome
-c:
-cd C:\Program Files (x86)\Google\Chrome\Application
-chrome.exe http://localhost:8080/crud/v1/task/getTasks
+start chrome.exe http://localhost:8080/crud/v1/task/getTasks
 goto end
 
 :fail
