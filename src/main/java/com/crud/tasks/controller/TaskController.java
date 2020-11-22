@@ -22,7 +22,8 @@ public class TaskController {
         return new TaskDto(1L, "test title", "test_content");
     }
 
-    public void deleteTask(Long taskId) {}
+    public void deleteTask(Long taskId) {
+    }
 
     public TaskDto updateTask(TaskDto task) {
         return new TaskDto(1L, "Edited test title", "Test content");
