@@ -33,8 +33,8 @@ public class TrelloClient {
         URI url = UriComponentsBuilder.fromHttpUrl(trelloConfig.getTrelloApiEndpoint() + "/members/cezaryjanicki/boards")
                 .queryParam("key", trelloConfig.getTrelloAppKey())
                 .queryParam("token", trelloConfig.getTrelloToken())
-                .queryParam("fields", "name")
                 .queryParam("fields", "id")
+                .queryParam("fields", "name")
                 .queryParam("lists", "all")
                 .build().encode().toUri();
 
