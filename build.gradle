@@ -18,6 +18,8 @@ repositories {
 }
 
 dependencies {
+	implementation 'junit:junit:4.12'
+
 	//implementation 'junit:junit:4.12'
 	//testCompile group: 'org.junit.platform', name: 'junit-platform-runner', version: '1.7.0'
     compile 'org.springframework.boot:spring-boot-starter-web'
@@ -30,6 +32,7 @@ dependencies {
 	//compile('org.postgresql:postgresql')
 	compile('io.springfox:springfox-swagger2:2.7.0')
 	compile('io.springfox:springfox-swagger-ui:2.7.0')
+	compile('org.springframework.boot:spring-boot-starter-mail:2.3.6.RELEASE')
 }
 
 test {
