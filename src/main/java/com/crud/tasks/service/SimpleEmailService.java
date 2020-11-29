@@ -32,6 +32,13 @@ public class SimpleEmailService {
         mailMessage.setTo(mail.getMailTo());
         mailMessage.setSubject(mail.getSubject());
         mailMessage.setText(mail.getMessage());
+        if (mail.getToCc().isEmpty() || mail.getToCc().equals(null)) {
+            mailMessage.setCc("");
+            LOGGER.info("Field Cc is empty");
+        } else {
+            mailMessage.setCc(mail.getToCc());
+            LOGGER.info("Email has been sent to Cc");
+        }
         return mailMessage;
     }
 }
