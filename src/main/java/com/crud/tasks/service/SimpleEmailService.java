@@ -8,6 +8,7 @@ import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
+import org.apache.commons.lang3.StringUtils;
 
 @Service
 public class SimpleEmailService {
@@ -32,10 +33,7 @@ public class SimpleEmailService {
         mailMessage.setTo(mail.getMailTo());
         mailMessage.setSubject(mail.getSubject());
         mailMessage.setText(mail.getMessage());
-        if (mail.getToCc().isEmpty() || mail.getToCc().equals(null)) {
-            mailMessage.setCc("");
-            LOGGER.info("Field Cc is empty");
-        } else {
+        if (!StringUtils.isBlank(mail.getToCc())) {
             mailMessage.setCc(mail.getToCc());
             LOGGER.info("Email has been sent to Cc");
         }
