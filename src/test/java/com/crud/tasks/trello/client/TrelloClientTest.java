@@ -1,4 +1,4 @@
-package com.crud.tasks.trello.client;
+/*package com.crud.tasks.trello.client;
 
 import com.crud.tasks.domain.TrelloBoardDto;
 import com.crud.tasks.domain.TrelloCardDto;
@@ -83,3 +83,5 @@ class TrelloClientTest {
     }
 
 }
+
+ */
