@@ -18,7 +18,9 @@ repositories {
 }
 
 dependencies {
-	compile 'org.springframework.boot:spring-boot-starter-web'
+	//implementation 'junit:junit:4.12'
+	//testCompile group: 'org.junit.platform', name: 'junit-platform-runner', version: '1.7.0'
+    compile 'org.springframework.boot:spring-boot-starter-web'
 	testCompile 'org.springframework.boot:spring-boot-starter-test'
 	compile('org.projectlombok:lombok')
 	annotationProcessor('org.projectlombok:lombok')
