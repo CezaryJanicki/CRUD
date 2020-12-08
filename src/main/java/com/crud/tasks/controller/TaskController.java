@@ -20,6 +20,7 @@ public class TaskController {
     @Autowired
     private DbService dbService;
 
+
     @Autowired
     private TaskMapper taskMapper;
 
@@ -54,5 +55,7 @@ public class TaskController {
     @PostMapping(value = "/createTask", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void createTask(@RequestBody TaskDto taskDto) {
         dbService.saveTask(taskMapper.mapToTask(taskDto));
+    public TaskDto getTask(Long taskId) throws TaskNotFoundException {
+        return taskMapper.mapToTaskDto(dbService.getTaskById(taskId));
     }
 }
