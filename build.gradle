@@ -3,7 +3,7 @@ plugins {
 	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
 	id 'java'
 	id 'eclipse'
-	id 'war'
+	//id 'war'
 
 }
 
@@ -18,6 +18,8 @@ repositories {
 }
 
 dependencies {
+	implementation 'junit:junit:4.12'
+
 	//implementation 'junit:junit:4.12'
 	//testCompile group: 'org.junit.platform', name: 'junit-platform-runner', version: '1.7.0'
     compile 'org.springframework.boot:spring-boot-starter-web'
@@ -25,11 +27,13 @@ dependencies {
 	compile('org.projectlombok:lombok')
 	annotationProcessor('org.projectlombok:lombok')
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
-	compile('mysql:mysql-connector-java')
+	//compile('mysql:mysql-connector-java')
 	//providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
-	//compile('org.postgresql:postgresql')
+	compile('org.postgresql:postgresql')
 	compile('io.springfox:springfox-swagger2:2.7.0')
 	compile('io.springfox:springfox-swagger-ui:2.7.0')
+	compile('org.springframework.boot:spring-boot-starter-mail:2.3.6.RELEASE')
+	compile ('org.apache.commons:commons-lang3:3.0')
 }
 
 test {

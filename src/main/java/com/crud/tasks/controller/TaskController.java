@@ -10,10 +10,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "*")
 
+@CrossOrigin("*")
 import static java.util.Optional.ofNullable;
-
 @RestController
 @RequestMapping("/v1/task")
 public class TaskController {

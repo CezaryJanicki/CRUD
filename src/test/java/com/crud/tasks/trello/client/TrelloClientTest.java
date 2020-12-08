@@ -47,7 +47,7 @@ class TrelloClientTest {
         TrelloBoardDto[] trelloBoards = new TrelloBoardDto[1];
         trelloBoards[0] = new TrelloBoardDto("test_id", "test_board", new ArrayList<>());
 
-        URI uri = new URI("http://test.com/members/cezaryjanicki/boards?key=test&token=test&fields=name&fields=id&lists=all");
+        URI uri = new URI("http://test.com/members/cezaryjanicki/boards?key=test&token=test&fields=id&fields=name&lists=all");
 
         when(restTemplate.getForObject(uri, TrelloBoardDto[].class)).thenReturn((trelloBoards));
         //When
@@ -94,5 +94,4 @@ class TrelloClientTest {
         //Then
         assertTrue(fetchedTrelloBoards.isEmpty());
     }
-
 }
