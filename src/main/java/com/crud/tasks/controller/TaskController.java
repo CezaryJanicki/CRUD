@@ -16,6 +16,7 @@ public class TaskController {
     @Autowired
     private DbService dbService;
 
+
     @Autowired
     private TaskMapper taskMapper;
 
@@ -39,6 +40,7 @@ public class TaskController {
     }
 
     @PostMapping("createTask" )
-    public void createTask(TaskDto task) {
+
+        return new TaskDto(1L, "test title", "test_content");
     }
 }
