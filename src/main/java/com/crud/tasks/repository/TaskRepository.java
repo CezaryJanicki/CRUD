@@ -19,4 +19,6 @@ public interface TaskRepository extends CrudRepository<Task, Long> {
 
     @Override
     long count();
+
+    Task getTaskById(Long id);
 }

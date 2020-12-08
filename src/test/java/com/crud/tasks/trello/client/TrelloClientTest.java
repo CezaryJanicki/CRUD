@@ -1,7 +1,8 @@
-/*package com.crud.tasks.trello.client;
+package com.crud.tasks.trello.client;
 
 import com.crud.tasks.domain.TrelloBoardDto;
 import com.crud.tasks.domain.TrelloCardDto;
+import com.crud.tasks.domain.TrelloListDto;
 import com.crud.tasks.trello.config.TrelloConfig;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -82,6 +83,15 @@ class TrelloClientTest {
         assertEquals("http://test.com", newCard.getShortUrl());
     }
 
-}
+    @Test
+    public void shouldReturnEmptyList() throws URISyntaxException {
+        //Given
 
- */
+        URI uri = new URI("http://test.com/members/cezaryjanicki/boards?key=test&token=test&fields=name&fields=id&lists=all");
+        when(restTemplate.getForObject(uri, TrelloBoardDto[].class)).thenReturn(null);
+        //When
+        List<TrelloBoardDto> fetchedTrelloBoards = trelloClient.getTrelloBoards();
+        //Then
+        assertTrue(fetchedTrelloBoards.isEmpty());
+    }
+}
