@@ -17,4 +17,12 @@ public class BadgesDto {
 
     @JsonProperty("attachmentsByType")
     private AttachmentByTypeDto attachments;
+
+    @Override
+    public String toString() {
+        return "BadgesDto{" +
+                "votes=" + votes +
+                ", attachments=" + attachments +
+                '}';
+    }
 }

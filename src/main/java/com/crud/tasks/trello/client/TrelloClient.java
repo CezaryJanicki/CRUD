@@ -8,12 +8,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -31,22 +29,18 @@ public class TrelloClient {
     @Autowired
     private RestTemplate restTemplate;
 
-    public List<TrelloBoardDto> getTrelloBoards() {
-
+    public URI getUri() {
         URI url = UriComponentsBuilder.fromHttpUrl(trelloConfig.getTrelloApiEndpoint() + "/members/cezaryjanicki/boards")
                 .queryParam("key", trelloConfig.getTrelloAppKey())
                 .queryParam("token", trelloConfig.getTrelloToken())
-                .queryParam("fields", "id")
-                .queryParam("fields", "name")
-                .queryParam("lists", "all")
-                .build().encode().toUri();
+                .queryParam("field", "id")
+                .queryParam("field", "name")
+                .queryParam("lists", "all").build().encode().toUri();
         return url;
     }
 
     public List<TrelloBoardDto> getTrelloBoards() {
-
         TrelloBoardDto[] boardsResponse = restTemplate.getForObject(getUri(), TrelloBoardDto[].class);
-
         return Arrays.asList(Optional.ofNullable(boardsResponse).orElse(new TrelloBoardDto[0]));
     }
 

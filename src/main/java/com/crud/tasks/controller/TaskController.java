@@ -12,7 +12,7 @@ import java.util.List;
 
 
 @CrossOrigin("*")
-import static java.util.Optional.ofNullable;
+
 @RestController
 @RequestMapping("/v1/task")
 public class TaskController {
@@ -54,7 +54,5 @@ public class TaskController {
     @PostMapping(value = "/createTask", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void createTask(@RequestBody TaskDto taskDto) {
         dbService.saveTask(taskMapper.mapToTask(taskDto));
-    public TaskDto getTask(Long taskId) throws TaskNotFoundException {
-        return taskMapper.mapToTaskDto(dbService.getTaskById(taskId));
     }
 }
