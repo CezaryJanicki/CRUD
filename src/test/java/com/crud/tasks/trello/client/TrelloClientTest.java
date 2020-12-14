@@ -1,5 +1,6 @@
 package com.crud.tasks.trello.client;
 
+import com.crud.tasks.domain.BadgesDto;
 import com.crud.tasks.domain.TrelloBoardDto;
 import com.crud.tasks.domain.TrelloCardDto;
 import com.crud.tasks.domain.TrelloListDto;
@@ -47,7 +48,7 @@ class TrelloClientTest {
         TrelloBoardDto[] trelloBoards = new TrelloBoardDto[1];
         trelloBoards[0] = new TrelloBoardDto("test_id", "test_board", new ArrayList<>());
 
-        URI uri = new URI("http://test.com/members/cezaryjanicki/boards?key=test&token=test&fields=id&fields=name&lists=all");
+        URI uri = new URI("http://test.com/members/cezaryjanicki/boards?key=test&token=test&field=id&field=name&lists=all");
 
         when(restTemplate.getForObject(uri, TrelloBoardDto[].class)).thenReturn((trelloBoards));
         //When
@@ -68,11 +69,11 @@ class TrelloClientTest {
                 "test_id"
         );
         URI uri = new URI("http://test.com/cards?key=test&token=test&name=Test%20task&desc=Test%20description&pos=top&idList=test_id");
-
         CreatedTrelloCard createdTrelloCard = new CreatedTrelloCard(
                 "1",
                 "Test task",
-                "http://test.com"
+                "http://test.com",
+                new BadgesDto(3, null)
         );
         when(restTemplate.postForObject(uri, null, CreatedTrelloCard.class)).thenReturn(createdTrelloCard);
         //When
@@ -81,13 +82,14 @@ class TrelloClientTest {
         assertEquals("1", newCard.getId());
         assertEquals("Test task", newCard.getName());
         assertEquals("http://test.com", newCard.getShortUrl());
+        //assertEquals(new BadgesDto(3, null), newCard.getBadges());
     }
 
     @Test
     public void shouldReturnEmptyList() throws URISyntaxException {
         //Given
 
-        URI uri = new URI("http://test.com/members/cezaryjanicki/boards?key=test&token=test&fields=name&fields=id&lists=all");
+        URI uri = new URI("http://test.com/members/cezaryjanicki/boards?key=test&token=test&field=id&field=name&lists=all");
         when(restTemplate.getForObject(uri, TrelloBoardDto[].class)).thenReturn(null);
         //When
         List<TrelloBoardDto> fetchedTrelloBoards = trelloClient.getTrelloBoards();
