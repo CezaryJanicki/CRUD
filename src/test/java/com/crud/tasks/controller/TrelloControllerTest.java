@@ -42,7 +42,8 @@ public class TrelloControllerTest {
         List<TrelloBoardDto> trelloBoards = new ArrayList<>();
         when(trelloFacade.fetchTrelloBoards()).thenReturn(trelloBoards);
         //When & Then
-        mockMvc.perform(get("http://*/v1/trello/getTrelloBoards").contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("http://*/v1/trello/getTrelloBoards")
+                .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().is(200))
                 .andExpect(jsonPath("$", hasSize(0)));
     }
