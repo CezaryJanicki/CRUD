@@ -33,7 +33,16 @@ public class EmailScheduler {
     }
 
     private String generateMailBody(long size) {
-        return "Currently in database you got " + size + (size > 1 ? "tasks" : "task");
+        return "Currently in database you got " + size + (size > 1 ? " tasks" : " task");
 
+    }
+
+    @Scheduled(cron = "0 0 10 * * *")
+    private void sendDailyEmail() {
+        long size = taskRepository.count();
+        simpleEmailService.sendDailyEmail(new Mail(
+                adminConfig.getAdminMail(),
+                SUBJECT,
+                generateMailBody(size), null));
     }
 }
