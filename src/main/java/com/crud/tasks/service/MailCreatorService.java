@@ -37,6 +37,7 @@ public class MailCreatorService {
         context.setVariable("admin_config", adminConfig);
         context.setVariable("show_button", false);
         context.setVariable("is_friend", true);
+        context.setVariable("application_functionality", functionality);
         return templateEngine.process("mail/created-trello-card-mail", context);
     }
 
@@ -55,6 +56,7 @@ public class MailCreatorService {
         context.setVariable("show_button", true);
         context.setVariable("is_friend", false);
         context.setVariable("update", trelloClient.getTrelloBoards().size());
-        return templateEngine.process("mail/daily-mail", context);
+        context.setVariable("application_functionality", functionality);
+        return templateEngine.process("mail/created-trello-card-mail", context);
     }
 }
