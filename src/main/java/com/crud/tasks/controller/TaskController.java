@@ -14,7 +14,7 @@ import java.util.List;
 @CrossOrigin("*")
 
 @RestController
-@RequestMapping("/v1/task")
+@RequestMapping("/v1")
 public class TaskController {
     @Autowired
     private DbService dbService;
@@ -22,18 +22,18 @@ public class TaskController {
     @Autowired
     private TaskMapper taskMapper;
 
-    @GetMapping("/getTasks")
+    @GetMapping("/tasks")
     public List<TaskDto> getTasks() {
         return taskMapper.mapToTaskDtoList(dbService.getAllTasks());
     }
 
-    @GetMapping("/getTask")
-    public TaskDto getTask(@RequestParam Long taskId) {
+    @GetMapping("/tasks/{taskId}")
+    public TaskDto getTask(@PathVariable Long taskId) throws TaskNotFoundException {
         return taskMapper.mapToTaskDto(dbService.getTask(taskId).orElseThrow(TaskNotFoundException::new));
     }
 
-    @DeleteMapping("/deleteTask")
-    public void deleteTask(@RequestParam Long taskId) {
+    @DeleteMapping("/tasks/{taskId}")
+    public void deleteTask(@PathVariable Long taskId) {
         try {
             dbService.deleteTask(taskId);
         } catch (EmptyResultDataAccessException e) {
@@ -41,7 +41,7 @@ public class TaskController {
         }
     }
 
-    @PutMapping(value = "/updateTask", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/tasks", consumes = MediaType.APPLICATION_JSON_VALUE)
     public TaskDto updateTask(@RequestBody TaskDto taskDto) {
         if (dbService.getTask(taskDto.getId()).isPresent()) {
             return taskMapper.mapToTaskDto(dbService.saveTask(taskMapper.mapToTask(taskDto)));
@@ -50,7 +50,7 @@ public class TaskController {
         }
     }
 
-    @PostMapping(value = "/createTask", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/tasks", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void createTask(@RequestBody TaskDto taskDto) {
         dbService.saveTask(taskMapper.mapToTask(taskDto));
     }
